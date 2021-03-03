@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge
+package com.example.androiddevchallenge.di
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ExperimentalFoundationApi
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.androiddevchallenge.MyApplication
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    @ExperimentalFoundationApi
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent { AppContents() }
+@Module
+@InstallIn(ActivityComponent::class)
+class AppModule {
+    @App
+    @Provides
+    fun provideContext(application: MyApplication): MyApplication {
+        return application
     }
 }
