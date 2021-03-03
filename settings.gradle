@@ -1,2 +1,13 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url "https://androidx.dev/snapshots/builds/6777889/artifacts/repository/" }
+    }
+}
 rootProject.name = "AndroidDevChallenge"
 include ':app'
