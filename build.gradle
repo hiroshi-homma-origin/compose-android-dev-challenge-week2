@@ -15,18 +15,24 @@
  */
 
 buildscript {
-    ext.kotlin_version = '1.4.30'
-    ext.compose_version = '1.0.0-beta01'
-    ext.coroutines_version = '1.4.2'
-
+    ext {
+        kotlin_version = '1.4.30'
+        compose_version = '1.0.0-beta01'
+        coroutines_version = '1.4.2'
+        google_hilt = "2.31.2-alpha"
+        androidx_hilt = "1.0.0-SNAPSHOT"
+    }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:7.0.0-alpha08"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$google_hilt"
     }
 }
 
@@ -37,7 +43,6 @@ plugins {
 subprojects {
     repositories {
         google()
-        jcenter()
     }
 
     apply plugin: 'com.diffplug.spotless'
