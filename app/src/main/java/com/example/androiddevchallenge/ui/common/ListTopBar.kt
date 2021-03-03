@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge
+package com.example.androiddevchallenge.ui.common
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ExperimentalFoundationApi
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    @ExperimentalFoundationApi
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent { AppContents() }
-    }
+@Composable
+fun ListTopBar(screenName: String) {
+    TopAppBar(
+        title = { Text(screenName) }
+    )
 }

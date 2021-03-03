@@ -13,19 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge
+package com.kotlin.project.dogAndCat.data.model
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ExperimentalFoundationApi
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    @ExperimentalFoundationApi
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent { AppContents() }
-    }
-}
+data class Kitten(
+    val id: Int,
+    val imgUrl: String,
+    val name: String,
+    val age: String,
+    val gender: String,
+    val description: String
+)
