@@ -10,4 +10,12 @@
       the License.
       -->
     <string name="app_name">AndroidDevChallenge</string>
+    <string name="puppies">Puppies</string>
+    <string name="kittens">Kittens</string>
+    <string name="puppyDetailRoute">PuppyDetail/{id}</string>
+    <string name="kittenDetailRoute">KittenDetail/{id}</string>
+    <string name="puppyDetail">PuppyDetail</string>
+    <string name="kittenDetail">KittenDetail</string>
+    <string name="back">Back</string>
+    <string name="adapt">Adapt</string>
 </resources>

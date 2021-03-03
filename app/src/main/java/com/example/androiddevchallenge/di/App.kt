@@ -13,19 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge
+package com.example.androiddevchallenge.di
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ExperimentalFoundationApi
-import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Qualifier
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    @ExperimentalFoundationApi
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent { AppContents() }
-    }
-}
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class App
