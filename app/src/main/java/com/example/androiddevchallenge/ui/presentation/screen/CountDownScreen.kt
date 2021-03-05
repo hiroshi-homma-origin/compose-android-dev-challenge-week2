@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.presentation
+package com.example.androiddevchallenge.ui.presentation.screen
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
 
 @ExperimentalAnimationApi
 @Composable
@@ -41,14 +40,28 @@ fun CountDownScreen(
     Surface(color = MaterialTheme.colors.background) {
         Column(
             modifier = Modifier
-                .padding(32.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AnimatedVisibility(visible = isStarted) {
-                CountDownContent(progress, label)
+                TimerScreen(progress, label)
             }
-            TimeSetField(isStarted, seconds, onSecondsChange, onStartCountdown, onStopCountdown)
+            TimeSetScreen(isStarted, seconds, onSecondsChange, onStartCountdown, onStopCountdown)
+        }
+    }
+}
+
+@Preview
+@ExperimentalAnimationApi
+@Composable
+fun CountDownScreen() {
+    Surface(color = MaterialTheme.colors.background) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TimerScreen(2.0f, "01:00:00")
+            TimeSetScreen(true, "10", { }, { }, { })
         }
     }
 }

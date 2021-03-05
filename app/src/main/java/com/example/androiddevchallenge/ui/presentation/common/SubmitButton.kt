@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.presentation
+package com.example.androiddevchallenge.ui.presentation.common
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -30,10 +30,30 @@ fun SubmitButton(
     onStopCountdown: () -> Unit
 ) {
     Button(
-        modifier = Modifier.padding(vertical = 12.dp),
         enabled = isStarted || !isStarted && seconds.isNotBlank(),
-        onClick = { if (isStarted) onStopCountdown() else onStartCountdown() }
+        onClick = { if (isStarted) onStopCountdown() else onStartCountdown() },
+        elevation = ButtonDefaults.elevation(
+            defaultElevation = 10.dp,
+            pressedElevation = 10.dp,
+            disabledElevation = 10.dp
+        )
     ) {
         Text(text = if (isStarted) "STOP" else "START")
+    }
+}
+
+@Preview
+@Composable
+fun SubmitButtonPreview() {
+    Button(
+        enabled = true,
+        onClick = { },
+        elevation = ButtonDefaults.elevation(
+            defaultElevation = 10.dp,
+            pressedElevation = 10.dp,
+            disabledElevation = 10.dp
+        )
+    ) {
+        Text(text = "START")
     }
 }
