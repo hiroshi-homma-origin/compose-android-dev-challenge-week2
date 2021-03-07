@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.presentation.custom.CustomCircularProgressIndicator
 
 @ExperimentalAnimationApi
 @Composable
@@ -56,7 +56,7 @@ fun TimerScreen(progress: Float, label: String) {
                 style = Stroke(20.dp.toPx())
             )
         }
-        CircularProgressIndicator(
+        CustomCircularProgressIndicator(
             modifier = Modifier.width(240.dp)
                 .height(240.dp),
             progress = progress,
@@ -94,7 +94,7 @@ fun TimerComponentPreview() {
                 style = Stroke(19.dp.toPx())
             )
         }
-        CircularProgressIndicator(
+        CustomCircularProgressIndicator(
             modifier = Modifier.width(240.dp)
                 .height(240.dp),
             progress = -0.5f,

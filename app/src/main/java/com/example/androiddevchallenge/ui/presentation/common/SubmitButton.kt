@@ -21,17 +21,21 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.androiddevchallenge.viewModel.CountdownViewModel
 
 @Composable
 fun SubmitButton(
     isStarted: Boolean,
-    seconds: String,
-    onStartCountdown: () -> Unit,
-    onStopCountdown: () -> Unit
+    seconds: String
 ) {
+    val viewModel = viewModel<CountdownViewModel>()
     Button(
         enabled = isStarted || !isStarted && seconds.isNotBlank(),
-        onClick = { if (isStarted) onStopCountdown() else onStartCountdown() },
+        onClick = {
+            if (isStarted) viewModel.stopCountdown()
+            else viewModel.startCountdown()
+        },
         elevation = ButtonDefaults.elevation(
             defaultElevation = 10.dp,
             pressedElevation = 10.dp,

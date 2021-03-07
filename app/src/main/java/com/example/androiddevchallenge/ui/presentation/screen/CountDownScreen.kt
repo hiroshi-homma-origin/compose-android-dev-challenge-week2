@@ -24,7 +24,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 
 @ExperimentalAnimationApi
 @Composable
@@ -32,10 +31,7 @@ fun CountDownScreen(
     isStarted: Boolean,
     seconds: String,
     progress: Float,
-    label: String,
-    onSecondsChange: (String) -> Unit,
-    onStartCountdown: () -> Unit,
-    onStopCountdown: () -> Unit
+    label: String
 ) {
     Surface(color = MaterialTheme.colors.background) {
         Column(
@@ -46,22 +42,7 @@ fun CountDownScreen(
             AnimatedVisibility(visible = isStarted) {
                 TimerScreen(progress, label)
             }
-            TimeSetScreen(isStarted, seconds, onSecondsChange, onStartCountdown, onStopCountdown)
-        }
-    }
-}
-
-@Preview
-@ExperimentalAnimationApi
-@Composable
-fun CountDownScreen() {
-    Surface(color = MaterialTheme.colors.background) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TimerScreen(2.0f, "01:00:00")
-            TimeSetScreen(true, "10", { }, { }, { })
+            TimeSetScreen(isStarted, seconds)
         }
     }
 }

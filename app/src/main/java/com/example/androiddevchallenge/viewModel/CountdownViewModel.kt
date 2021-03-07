@@ -48,14 +48,21 @@ class CountdownViewModel @ViewModelInject constructor(
 
     fun setSeconds(seconds: Long) {
         _setupSeconds.value = seconds
+
+        _timerState.value = TimerState(
+            hour = seconds.toInt() / 3600,
+            minutes = (seconds.toInt() / 60) % 60,
+            seconds = seconds.toInt() % 60,
+            progress = seconds.toFloat() / 1000 / _setupSeconds.value
+        )
     }
 
     fun secondsFromState() {
         _setupSeconds.value = (
-            _timerState.value.hour * 3600 +
-                _timerState.value.minutes * 60 +
-                _timerState.value.seconds
-            ).toLong()
+                _timerState.value.hour * 3600 +
+                        _timerState.value.minutes * 60 +
+                        _timerState.value.seconds
+                ).toLong()
     }
 
     fun startCountdown() {
@@ -87,18 +94,28 @@ class CountdownViewModel @ViewModelInject constructor(
 
     private fun formatTime(millis: Long) = DateUtils.formatElapsedTime((millis + 1000).div(1000))
 
-    // --- counter control ---//
+    // --- counter control (Here can be simpler...)---//
 
     fun incrementHours() {
         _timerState.value = _timerState.value.run {
             when {
-                _timerState.value.hour >= 23 ->
+                _timerState.value.hour >= 24 ->
                     copy(
                         hour = 0,
                         minutes = 0,
                         seconds = 0
                     )
-                else -> copy(hour = hour + 1)
+                else -> {
+                    if (_timerState.value.hour == 23) {
+                        copy(
+                            hour = 0,
+                            minutes = 0,
+                            seconds = 0
+                        )
+                    } else {
+                        copy(hour = hour + 1)
+                    }
+                }
             }
         }
         secondsFromState()
@@ -107,7 +124,7 @@ class CountdownViewModel @ViewModelInject constructor(
     fun decrementHours() {
         _timerState.value = _timerState.value.run {
             when {
-                _timerState.value.hour <= 0 -> copy(hour = 23)
+                _timerState.value.hour <= 0 -> copy(hour = 24)
                 else -> copy(hour = hour - 1)
             }
         }
@@ -116,7 +133,7 @@ class CountdownViewModel @ViewModelInject constructor(
 
     fun incrementMinutes() {
         _timerState.value = _timerState.value.run {
-            val setHour = if (_timerState.value.hour < 23) {
+            val setHour = if (_timerState.value.hour < 24) {
                 _timerState.value.hour + 1
             } else {
                 0
@@ -129,7 +146,17 @@ class CountdownViewModel @ViewModelInject constructor(
                         seconds = 0
                     )
                 }
-                else -> copy(minutes = minutes + 1)
+                else -> {
+                    if (_timerState.value.hour == 24) {
+                        copy(
+                            hour = 0,
+                            minutes = 0,
+                            seconds = 0
+                        )
+                    } else {
+                        copy(minutes = minutes + 1)
+                    }
+                }
             }
         }
         secondsFromState()
@@ -138,7 +165,13 @@ class CountdownViewModel @ViewModelInject constructor(
     fun decrementMinutes() {
         _timerState.value = _timerState.value.run {
             when {
-                _timerState.value.minutes <= 0 -> copy(minutes = 59)
+                _timerState.value.minutes <= 0 -> {
+                    if (_timerState.value.hour == 24) {
+                        copy(hour = 23, minutes = 59)
+                    } else {
+                        copy(minutes = 59)
+                    }
+                }
                 else -> copy(minutes = minutes - 1)
             }
         }
@@ -169,7 +202,17 @@ class CountdownViewModel @ViewModelInject constructor(
                         seconds = 0
                     )
                 }
-                else -> copy(seconds = seconds + 1)
+                else -> {
+                    if (_timerState.value.hour == 24) {
+                        copy(
+                            hour = 0,
+                            minutes = 0,
+                            seconds = 0
+                        )
+                    } else {
+                        copy(seconds = seconds + 1)
+                    }
+                }
             }
         }
         secondsFromState()
@@ -178,7 +221,13 @@ class CountdownViewModel @ViewModelInject constructor(
     fun decrementSeconds() {
         _timerState.value = _timerState.value.run {
             when {
-                _timerState.value.seconds <= 0 -> copy(seconds = 59)
+                _timerState.value.seconds <= 0 -> {
+                    if (_timerState.value.hour == 24) {
+                        copy(hour = 23, seconds = 59)
+                    } else {
+                        copy(seconds = 59)
+                    }
+                }
                 else -> copy(seconds = seconds - 1)
             }
         }

@@ -15,12 +15,10 @@
  */
 package com.example.androiddevchallenge.ui
 
-import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.ui.presentation.screen.CountDownScreen
 import com.example.androiddevchallenge.viewModel.CountdownViewModel
@@ -28,7 +26,6 @@ import com.example.androiddevchallenge.viewModel.CountdownViewModel
 @ExperimentalAnimationApi
 @Composable
 fun MyApp(countdownViewModel: CountdownViewModel = viewModel()) {
-    val context = LocalContext.current
     countdownViewModel.apply {
         val isStarted by isStarted.collectAsState(false)
         val seconds by setupSeconds.collectAsState(initial = 0L)
@@ -39,16 +36,7 @@ fun MyApp(countdownViewModel: CountdownViewModel = viewModel()) {
             isStarted = isStarted,
             seconds = if (seconds == 0L) "" else seconds.toString(),
             progress = progress,
-            label = label,
-            onSecondsChange = { setSeconds(it.toLongOrNull() ?: 0L) },
-            onStartCountdown = {
-                Toast.makeText(context, "Started", Toast.LENGTH_SHORT).show()
-                startCountdown()
-            },
-            onStopCountdown = {
-                Toast.makeText(context, "Stopped", Toast.LENGTH_SHORT).show()
-                stopCountdown()
-            }
+            label = label
         )
     }
 }
