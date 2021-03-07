@@ -59,10 +59,10 @@ class CountdownViewModel @ViewModelInject constructor(
 
     fun secondsFromState() {
         _setupSeconds.value = (
-                _timerState.value.hour * 3600 +
-                        _timerState.value.minutes * 60 +
-                        _timerState.value.seconds
-                ).toLong()
+            _timerState.value.hour * 3600 +
+                _timerState.value.minutes * 60 +
+                _timerState.value.seconds
+            ).toLong()
     }
 
     fun startCountdown() {
