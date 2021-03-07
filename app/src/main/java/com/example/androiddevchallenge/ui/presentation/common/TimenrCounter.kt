@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -35,6 +36,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.theme.primaryText
+import com.example.androiddevchallenge.ui.theme.primaryVariant
 
 @Composable
 fun TimenrCounter(
@@ -49,6 +52,9 @@ fun TimenrCounter(
         Button(
             modifier = Modifier.size(40.dp),
             shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = primaryVariant
+            ),
             contentPadding = PaddingValues(0.dp),
             onClick = { increment.invoke() }
         ) {
@@ -65,12 +71,16 @@ fun TimenrCounter(
             Text(
                 text = formattedValue,
                 style = MaterialTheme.typography.h3,
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
+                color = primaryText
             )
         }
         Button(
             modifier = Modifier.size(40.dp),
             shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = primaryVariant
+            ),
             contentPadding = PaddingValues(0.dp),
             onClick = { decrement.invoke() }
         ) {
@@ -91,8 +101,12 @@ fun TimenrCounterPreview() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier
+                .size(40.dp),
             shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = primaryVariant
+            ),
             contentPadding = PaddingValues(0.dp),
             onClick = { },
         ) {
@@ -109,12 +123,16 @@ fun TimenrCounterPreview() {
             Text(
                 text = "20",
                 style = MaterialTheme.typography.h3,
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
+                color = primaryText
             )
         }
         Button(
             modifier = Modifier.size(40.dp),
             shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = primaryVariant
+            ),
             contentPadding = PaddingValues(0.dp),
             onClick = { },
         ) {

@@ -17,17 +17,22 @@ package com.example.androiddevchallenge.ui.presentation.screen
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.presentation.common.SubmitButton
 import com.example.androiddevchallenge.ui.presentation.common.WheelUpController
+import com.example.androiddevchallenge.ui.presentation.common.WheelUpControllerPreview
 import com.example.androiddevchallenge.ui.presentation.custom.CustomTextField
+import com.example.androiddevchallenge.ui.presentation.custom.CustomTextFieldPreview
+import com.example.androiddevchallenge.ui.theme.primary
 
 @ExperimentalAnimationApi
 @Composable
@@ -42,11 +47,16 @@ fun TimeSetScreen(
         item {
             AnimatedVisibility(visible = !isStarted) {
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     CustomTextField(seconds)
-                    TimerCounterScreen()
-                    WheelUpController()
+                    Box(
+                        modifier = Modifier.wrapContentSize()
+                    ) {
+                        WheelUpController()
+                        TimerCounterScreen()
+                    }
                 }
             }
             SubmitButton(isStarted, seconds)
@@ -55,23 +65,35 @@ fun TimeSetScreen(
 }
 
 @Preview
-@ExperimentalAnimationApi
 @Composable
 fun TimeSetScreenPreview() {
-    LazyColumn(
+//    Column(
+//        modifier = Modifier.fillMaxSize()
+//            .background(primary),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//            CustomTextFieldPreview()
+//        }
+//        SubmitButton(false, "10")
+//    }
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .background(primary),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-//            AnimatedVisibility(visible = true) {
-//                Column(
-//                    horizontalAlignment = Alignment.CenterHorizontally,
-//                ) {
-//                    CustomTextFieldPreview()
-//                    TimerCounterScreenPreview()
-//                    WheelUpControllerPreview()
-//                }
-//            }
-            SubmitButton(false, "10")
+        Column(
+            modifier = Modifier.fillMaxSize()
+                .background(primary),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CustomTextFieldPreview()
+            Box(
+                modifier = Modifier.wrapContentSize()
+            ) {
+                WheelUpControllerPreview()
+                TimerCounterScreenPreview()
+            }
         }
+        SubmitButton(false, "10")
     }
 }

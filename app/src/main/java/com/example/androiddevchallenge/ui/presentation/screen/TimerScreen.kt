@@ -29,11 +29,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.presentation.custom.CustomCircularProgressIndicator
+import com.example.androiddevchallenge.ui.theme.primaryVariant
+import com.example.androiddevchallenge.ui.theme.secondaryText
 
 @ExperimentalAnimationApi
 @Composable
@@ -44,23 +45,23 @@ fun TimerScreen(progress: Float, label: String) {
     ) {
         Canvas(
             modifier = Modifier
-                .width(220.dp)
-                .height(220.dp)
+                .width(240.dp)
+                .height(240.dp)
         ) {
             val canvasWidth = size.width
             val canvasHeight = size.height
             drawCircle(
-                color = Color.LightGray,
+                color = secondaryText,
                 center = Offset(x = canvasWidth / 2, y = canvasHeight / 2),
                 radius = size.width / 2,
-                style = Stroke(20.dp.toPx())
+                style = Stroke(40.dp.toPx())
             )
         }
         CustomCircularProgressIndicator(
-            modifier = Modifier.width(240.dp)
-                .height(240.dp),
+            modifier = Modifier.width(280.dp)
+                .height(280.dp),
             progress = progress,
-            strokeWidth = 20.dp
+            strokeWidth = 40.dp
         )
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
@@ -77,28 +78,28 @@ fun TimerScreen(progress: Float, label: String) {
 fun TimerComponentPreview() {
     Box(
         modifier = Modifier.aspectRatio(ratio = 1f)
-            .background(Color.White), // Test Imp
+            .background(primaryVariant),
         contentAlignment = Alignment.Center,
     ) {
         Canvas(
             modifier = Modifier
-                .width(220.dp)
-                .height(220.dp)
+                .width(240.dp)
+                .height(240.dp)
         ) {
             val canvasWidth = size.width
             val canvasHeight = size.height
             drawCircle(
-                color = Color.LightGray,
+                color = secondaryText,
                 center = Offset(x = canvasWidth / 2, y = canvasHeight / 2),
                 radius = size.width / 2,
-                style = Stroke(19.dp.toPx())
+                style = Stroke(39.dp.toPx())
             )
         }
         CustomCircularProgressIndicator(
-            modifier = Modifier.width(240.dp)
-                .height(240.dp),
+            modifier = Modifier.width(280.dp)
+                .height(280.dp),
             progress = -0.5f,
-            strokeWidth = 20.dp
+            strokeWidth = 40.dp
         )
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(

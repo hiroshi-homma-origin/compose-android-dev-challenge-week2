@@ -15,13 +15,17 @@
  */
 package com.example.androiddevchallenge.ui.presentation.common
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.androiddevchallenge.ui.theme.primaryVariant
+import com.example.androiddevchallenge.ui.theme.secondaryText
 import com.example.androiddevchallenge.viewModel.CountdownViewModel
 
 @Composable
@@ -31,6 +35,10 @@ fun SubmitButton(
 ) {
     val viewModel = viewModel<CountdownViewModel>()
     Button(
+        modifier = Modifier.padding(top = 20.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = primaryVariant
+        ),
         enabled = isStarted || !isStarted && seconds.isNotBlank(),
         onClick = {
             if (isStarted) viewModel.stopCountdown()
@@ -50,6 +58,9 @@ fun SubmitButton(
 @Composable
 fun SubmitButtonPreview() {
     Button(
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = secondaryText
+        ),
         enabled = true,
         onClick = { },
         elevation = ButtonDefaults.elevation(

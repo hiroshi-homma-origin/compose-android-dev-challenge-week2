@@ -16,14 +16,13 @@
 package com.example.androiddevchallenge.ui.presentation.common
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -35,13 +34,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.androiddevchallenge.ui.theme.primaryVariant
 import com.example.androiddevchallenge.viewModel.CountdownViewModel
 
 @Composable
@@ -54,8 +53,7 @@ fun WheelUpController() {
     val viewModel = viewModel<CountdownViewModel>()
     viewModel.setSeconds(offset.toLong())
     Box(
-        modifier = Modifier.fillMaxSize()
-            .background(Color.Black)
+        modifier = Modifier.fillMaxWidth()
             .scrollable(
                 orientation = Orientation.Vertical,
                 state = rememberScrollableState { scrollableState ->
@@ -69,8 +67,8 @@ fun WheelUpController() {
     ) {
         Canvas(
             modifier = Modifier
-                .width(140.dp)
-                .height(140.dp)
+                .width(320.dp)
+                .height(320.dp)
                 .padding(8.dp)
                 .graphicsLayer(rotationZ = offset)
                 .transformable(state = state)
@@ -78,14 +76,14 @@ fun WheelUpController() {
             val canvasWidth = size.width
             val canvasHeight = size.height
             drawCircle(
-                color = Color.LightGray,
+                color = primaryVariant,
                 center = Offset(x = canvasWidth / 2, y = canvasHeight / 2),
                 style = Stroke(4.dp.toPx())
             )
             drawLine(
-                color = Color.LightGray,
+                color = primaryVariant,
                 start = Offset((canvasWidth / 2), 15f),
-                end = Offset((canvasWidth / 2), (canvasHeight / 2)),
+                end = Offset((canvasWidth / 2), (canvasHeight / 8)),
                 strokeWidth = 16f,
                 cap = StrokeCap.Round,
                 alpha = 1.0f
@@ -103,7 +101,7 @@ fun WheelUpControllerPreview() {
         rotation += rotationChange
     }
     Box(
-        modifier = Modifier
+        modifier = Modifier.fillMaxWidth()
             .scrollable(
                 orientation = Orientation.Vertical,
                 state = rememberScrollableState { scrollableState ->
@@ -117,8 +115,8 @@ fun WheelUpControllerPreview() {
     ) {
         Canvas(
             modifier = Modifier
-                .width(140.dp)
-                .height(140.dp)
+                .width(320.dp)
+                .height(320.dp)
                 .padding(8.dp)
                 .graphicsLayer(rotationZ = offset)
                 .transformable(state = state)
@@ -126,14 +124,14 @@ fun WheelUpControllerPreview() {
             val canvasWidth = size.width
             val canvasHeight = size.height
             drawCircle(
-                color = Color.LightGray,
+                color = primaryVariant,
                 center = Offset(x = canvasWidth / 2, y = canvasHeight / 2),
                 style = Stroke(4.dp.toPx())
             )
             drawLine(
-                color = Color.LightGray,
+                color = primaryVariant,
                 start = Offset((canvasWidth / 2), 15f),
-                end = Offset((canvasWidth / 2), (canvasHeight / 2)),
+                end = Offset((canvasWidth / 2), (canvasHeight / 8)),
                 strokeWidth = 16f,
                 cap = StrokeCap.Round,
                 alpha = 1.0f
