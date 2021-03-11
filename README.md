@@ -1,6 +1,6 @@
 # Put title of your app here
 
-![Workflow result](https://github.com/hiroshi-homma-origin/android-dev-challenge-compose-week2/workflows/Check/badge.svg)
+![Workflow result](https://github.com/hiroshi-homma-origin/compose-android-dev-challenge-week2/workflows/Check/badge.svg)
 
 
 ## :scroll: Description
